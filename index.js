@@ -30,10 +30,17 @@
 
 
 // Ejercicio 6
-import stringLength from "./stringLength.js";
-let string = "Yo trato bien a todos :D"
+// import stringLength from "./stringLength.js";
+// let string = "Yo trato bien a todos :D"
 
-console.log(`"` + string + `"` + ` tiene ` +  + stringLength(string) + ` caracteres`);
+// console.log(`"` + string + `"` + ` tiene ` +  + stringLength(string) + ` caracteres`);
 
 
 // Ejercicio 7
+// import createArray from "./createArray.js";
+// import randomNumber from "./randomNumber.js";
+
+// console.log(createArray(randomNumber));
+
+
+// Ejercicio 8
