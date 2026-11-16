@@ -24,7 +24,7 @@
 
 
 // Ejercicio 4
-// import compareNumbers from './operations.js';
+// import compareNumbers from './compareNumbers.js';
 
 // console.log(compareNumbers(12, 45));
 
@@ -44,3 +44,20 @@
 
 
 // Ejercicio 8
+// import object from "./exercise8object.js";
+// console.log(object.boolean, object.object.c);
+
+
+// Ejercicio 9
+// import isEven from "./isEven.js";
+// let randomNumber = parseInt(Math.random() * (100 - 1) + 1)
+
+// console.log(randomNumber, isEven(randomNumber));
+
+
+// Ejercicio 10
+import showArray from "./showArray.js";
+import { showArrayReverse } from "./showArray.js";
+
+let myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(showArray(myArray), showArrayReverse(myArray));
