@@ -1,18 +1,15 @@
 function showArray(array) {
-    let result = ""
-    for (let i = 0; i < array.length; i++) {
-        result += array[i];
-    }
-
+    let result = array.join(", ")
     return result
 }
 
 function showArrayReverse(array) {
-    let result = ""
+    let reverseArray = []
     for (let i = array.length - 1; i >= 0; i--) {
-        result += array[i];
+        reverseArray.push(array[i])
     }
-    return result
+    
+    return reverseArray.join(", ")
 }
 
 

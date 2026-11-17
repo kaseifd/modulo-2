@@ -60,4 +60,5 @@ import showArray from "./showArray.js";
 import { showArrayReverse } from "./showArray.js";
 
 let myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-console.log(showArray(myArray), showArrayReverse(myArray));
+console.log(showArray(myArray));
+console.log(showArrayReverse(myArray));
