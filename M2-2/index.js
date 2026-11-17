@@ -14,14 +14,14 @@ app.get("/", (request, response) => {
 
 
 // Ejercicio 2
-function randomNumber(maxNumber) {
-    return parseInt(Math.random() * maxNumber + 1)
-}
+// function randomNumber(maxNumber) {
+//     return parseInt(Math.random() * maxNumber + 1)
+// }
 
-app.get("/:maxNumber", (request, response) => {
-    let maxNumber = request.params.maxNumber
-    response.send(randomNumber(maxNumber))
-})
+// app.get("/:maxNumber", (request, response) => {
+//     let maxNumber = request.params.maxNumber
+//     response.send(randomNumber(maxNumber))
+// })
 
 
 // Ejercicio 3
@@ -32,12 +32,16 @@ app.get("/person", (request, response) => {
     response.send(names)
 })
 
-// app.get("/person/:personName", (request, response) => {
-//     let personName = request.params.personName
 
+//Faltaria poner un mensaje de cuando la persona no existe
+app.get("/person/:personName", (request, response) => {
+    let personName = request.params.personName
 
-
-//     response.send(personName)
-// })
+    for (let i = 0; i < names.length; i++) {
+        if (personName == names[i].toLowerCase()) {
+            response.send(names[i])
+        }
+    }
+})
 
 app.listen(3000)
