@@ -13,14 +13,14 @@
 // c. 3.24*97.856
 // d. 1205/12.002
 
-// import exactMath from "exact-math";
+import exactMath from "exact-math";
 
-// let a = exactMath.add(789, 34, 250443);
-// let b = exactMath.sub(2059, 79); 
-// let c = exactMath.mul('3.24', '97.856');
-// let d = exactMath.div(1205, '12.002');
+let a = exactMath.add(789, 34, 250443);
+let b = exactMath.sub(2059, 79); 
+let c = exactMath.mul('3.24', '97.856');
+let d = exactMath.div(1205, '12.002');
 
-// console.log(a, b, c, d);
+console.log(a, b, c, d);
 
 
 // Ejercicio 4
@@ -56,9 +56,9 @@
 
 
 // Ejercicio 10
-import showArray from "./showArray.js";
-import { showArrayReverse } from "./showArray.js";
+// import showArray from "./showArray.js";
+// import { showArrayReverse } from "./showArray.js";
 
-let myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-console.log(showArray(myArray));
-console.log(showArrayReverse(myArray));
+// let myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(showArray(myArray));
+// console.log(showArrayReverse(myArray));
