@@ -26,22 +26,67 @@ app.get("/", (request, response) => {
 
 // Ejercicio 3
 
-let names = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
+// let names = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
 
-app.get("/person", (request, response) => {
-    response.send(names)
+// app.get("/person", (request, response) => {
+//     response.send(names)
+// })
+
+
+// //Faltaria poner un mensaje de cuando la persona no existe
+// app.get("/person/:personName", (request, response) => {
+//     let personName = request.params.personName
+
+//     for (let i = 0; i < names.length; i++) {
+//         if (personName == names[i].toLowerCase()) {
+//             response.send(names[i])
+//         }
+//     }
+// })
+
+
+// Ejercicio 4
+
+// import { saludarEnExpress } from "./functions.js"
+
+// app.get("/saludar", (request, response) => {
+//     response.send(saludarEnExpress())
+// })
+
+
+// Ejercicio 5
+
+let persons = {
+    name: "Marta",
+    surname: "Feijoo",
+    age: 26
+}
+
+
+
+
+app.get("/", (request, response) => {
+    response.send()
 })
 
 
-//Faltaria poner un mensaje de cuando la persona no existe
-app.get("/person/:personName", (request, response) => {
-    let personName = request.params.personName
 
-    for (let i = 0; i < names.length; i++) {
-        if (personName == names[i].toLowerCase()) {
-            response.send(names[i])
-        }
-    }
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000)
