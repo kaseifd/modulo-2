@@ -13,7 +13,7 @@
 // c. 3.24*97.856
 // d. 1205/12.002
 
-// const exactMath = require('exact-math');
+// import exactMath from "exact-math";
 
 // let a = exactMath.add(789, 34, 250443);
 // let b = exactMath.sub(2059, 79); 
