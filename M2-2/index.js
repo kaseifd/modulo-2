@@ -14,79 +14,89 @@ app.get("/", (request, response) => {
 
 
 // Ejercicio 2
-// function randomNumber(maxNumber) {
-//     return parseInt(Math.random() * maxNumber + 1)
-// }
+function randomNumber(maxNumber) {
+    return parseInt(Math.random() * maxNumber + 1)
+}
 
-// app.get("/:maxNumber", (request, response) => {
-//     let maxNumber = request.params.maxNumber
-//     response.send(randomNumber(maxNumber))
-// })
+app.get("/ejercicio-2/:maxNumber", (request, response) => {
+    let maxNumber = request.params.maxNumber
+    response.send(randomNumber(maxNumber))
+})
 
 
 // Ejercicio 3
 
-// let names = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
 
-// app.get("/person", (request, response) => {
-//     response.send(names)
-// })
+app.get("/ejercicio-3/person", (request, response) => {
+    let names = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
+    response.send(names)
+})
 
 
-// //Faltaria poner un mensaje de cuando la persona no existe
-// app.get("/person/:personName", (request, response) => {
-//     let personName = request.params.personName
+//Faltaria poner un mensaje de cuando la persona no existe
+app.get("/ejercicio-3/person/:personName", (request, response) => {
+    let personName = request.params.personName
+    let responseError = "La persona no existe"
 
-//     for (let i = 0; i < names.length; i++) {
-//         if (personName == names[i].toLowerCase()) {
-//             response.send(names[i])
-//         }
-//     }
-// })
+    for (let i = 0; i < names.length; i++) {
+        if (personName.toLowerCase() == names[i].toLowerCase()) {
+            response.send(`${names[i]} existe`)
+        }
+    }
+
+    response.send(responseError)
+})
 
 
 // Ejercicio 4
 
-// import { saludarEnExpress } from "./functions.js"
+import { saludarEnExpress } from "./functions.js"
 
-// app.get("/saludar", (request, response) => {
-//     response.send(saludarEnExpress())
-// })
+app.get("/ejercicio-4/saludar", (request, response) => {
+    response.send(saludarEnExpress())
+})
 
 
 // Ejercicio 5
 
-let persons = {
-    name: "Marta",
-    surname: "Feijoo",
-    age: 26
+let person = {
+    name: null,
+    surname: null,
+    age: null
 }
 
 
+app.get("/ejercicio-5/person/", (request, response) => {
+    response.send(person)
+})
 
+app.get("/ejercicio-5/register-name/:name", (request, response) => {
+    person.name = request.params.name
+    response.send(person)
+})
 
-app.get("/", (request, response) => {
-    response.send()
+app.get("/ejercicio-5/register-surname/:surname", (request, response) => {
+    person.surname = request.params.surname
+    response.send(person)
+})
+
+app.get("/ejercicio-5/register-age/:age", (request, response) => {
+    person.age = parseInt(request.params.age)
+    response.send(person)
 })
 
 
+// Ejercicio 6
 
+let classroomNames = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
 
+app.get("/ejercicio-6/classroom", (request, response) => {
+    response.send(classroomNames)
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/ejercicio-6/add-teacher/:teacher", (request, response) => {
+    classroomNames.push(request.params.teacher)
+    response.send(classroomNames)
+})
 
 app.listen(3000)
