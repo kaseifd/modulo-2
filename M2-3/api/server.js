@@ -16,6 +16,14 @@ app.get("/add-animal/", (request, response) => {
 })
 
 
+//Terminar
+app.get("/adopt/", (request, response) => {
+    animals.splice()
+    request.query.name
+    response.send(animals)
+})
+
+
 
 
 
