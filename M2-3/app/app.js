@@ -1,16 +1,19 @@
 const baseURL = "http://localhost:3000"
 
-displayAnimals()
+displayAnimals(await getAnimalsData(baseURL))
 
 function getHTML(id) {
     return document.getElementById(id)
 }
 
-async function displayAnimals() {
-    const result = await fetch(baseURL)
-    const data = await result.json()
+async function getAnimalsData(url) {
+    const result = await fetch(url)
+    return await result.json()
+}
+
+ function displayAnimals(data) { 
     getHTML("animals-container").innerHTML = ""
-    data.forEach((animal) => {
+     data.forEach((animal) => {
         getHTML("animals-container").innerHTML += `
             <div id="animal-${animal.name}">
                 <h2>${animal.name}</h2>
@@ -22,6 +25,8 @@ async function displayAnimals() {
 
     getHTML("add-animal-btn").addEventListener("click", () => {
         addAnimal()
+        console.log(addAnimal);
+        
     })
 }
 
@@ -31,10 +36,10 @@ async function addAnimal() {
     let animalAgeValue = getHTML("age-input").value
     let animalspeciesValue = getHTML("species-input").value
 
-    const result = await fetch(baseURL + `/add-animal/?name=${animalNameValue}&age=${animalAgeValue}&species=${animalspeciesValue}`)
-    displayAnimals()
-    return await result.json()
-
+    const addAnimalUrl = baseURL + `/add-animal/?name=${animalNameValue}&age=${animalAgeValue}&species=${animalspeciesValue}`
+    console.log(addAnimalUrl);
+    
+    displayAnimals(await getAnimalsData(addAnimalUrl))
 
 }
 

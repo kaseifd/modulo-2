@@ -2,6 +2,8 @@ import express from "express"
 import cors from "cors"
 import animals from "./db.js"
 
+
+
 const app = express()
 app.use(cors())
 
@@ -17,9 +19,13 @@ app.get("/add-animal/", (request, response) => {
 
 
 //Terminar
+
+//da error por la mierda del array con import
+//modificar array no igualarlo con splice o lo que sea
 app.get("/adopt/", (request, response) => {
-    animals.splice()
-    request.query.name
+    let animalName = request.query.name
+    // animals = animals.filter(animal => animal.name != animalName)
+
     response.send(animals)
 })
 
