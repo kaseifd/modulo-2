@@ -14,6 +14,7 @@ app.get("/", (request, response) => {
 
 
 // Ejercicio 2
+
 function randomNumber(maxNumber) {
     return parseInt(Math.random() * maxNumber + 1)
 }
@@ -26,14 +27,12 @@ app.get("/ejercicio-2/:maxNumber", (request, response) => {
 
 // Ejercicio 3
 
-
 app.get("/ejercicio-3/person", (request, response) => {
     let names = ["Marta", "Jorge", "Hugo", "Carlos", "Melisa"]
     response.send(names)
 })
 
 
-//Faltaria poner un mensaje de cuando la persona no existe
 app.get("/ejercicio-3/person/:personName", (request, response) => {
     let personName = request.params.personName
     let responseError = "La persona no existe"
