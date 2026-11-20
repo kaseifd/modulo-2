@@ -11,25 +11,37 @@ async function getAnimalsData(url) {
     return await result.json()
 }
 
- function displayAnimals(data) { 
+function displayAnimals(data) {
     getHTML("animals-container").innerHTML = ""
-     data.forEach((animal) => {
+    data.forEach((animal, index) => {
         getHTML("animals-container").innerHTML += `
             <div id="animal-${animal.name}">
                 <h2>${animal.name}</h2>
                 <p>${animal.age} años</p>
                 <p>${animal.species}</p>
+                <button id="adopt-${index}-btn" >Adoptar</button>
             </div>
             `
     });
 
-    getHTML("add-animal-btn").addEventListener("click", () => {
-        addAnimal()
-        console.log(addAnimal);
-        
-    })
+    addEventToAdoptButton(data)
+
 }
 
+function addEventToAdoptButton(data) {
+    data.forEach((animal, index) => {
+        let animalName = animal.name
+        getHTML(`adopt-${index}-btn`).addEventListener("click", async () => {
+            displayAnimals(await getAnimalsData(baseURL + `/adopt/?name=${animalName}`))
+        })
+    });
+}
+
+
+
+getHTML("add-animal-btn").addEventListener("click", () => {
+    addAnimal()
+})
 
 async function addAnimal() {
     let animalNameValue = getHTML("name-input").value
@@ -38,7 +50,7 @@ async function addAnimal() {
 
     const addAnimalUrl = baseURL + `/add-animal/?name=${animalNameValue}&age=${animalAgeValue}&species=${animalspeciesValue}`
     console.log(addAnimalUrl);
-    
+
     displayAnimals(await getAnimalsData(addAnimalUrl))
 
 }

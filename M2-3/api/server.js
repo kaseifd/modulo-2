@@ -17,14 +17,14 @@ app.get("/add-animal/", (request, response) => {
     response.send(animals)
 })
 
-
-//Terminar
-
-//da error por la mierda del array con import
-//modificar array no igualarlo con splice o lo que sea
 app.get("/adopt/", (request, response) => {
     let animalName = request.query.name
-    // animals = animals.filter(animal => animal.name != animalName)
+    for (let i = 0; i < animals.length; i++) {
+        if (animals[i].name == animalName) {
+            animals.splice(i, 1)
+            i = animals.length
+        }    
+    }
 
     response.send(animals)
 })
