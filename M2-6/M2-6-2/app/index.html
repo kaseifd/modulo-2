@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Books</title>
 </head>
+
 <body>
-    
+    <div id="books-container">
+        <div class="book">
+            <h2>title</h2>
+            <p>status</p>
+            <button id="delete-book-btn" onclick="deleteBook()">Borrar libro</button>
+            <button id="edit-book-btn" onclick="editBookStatus()">Marcar como leído</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
