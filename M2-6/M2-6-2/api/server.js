@@ -41,31 +41,32 @@ let db = client.db("books")
 
 
 
-app.get("/api/books" , async (req, res) => {
+app.get("/api/books", async (req, res) => {
     let books = await db.collection("books").find().toArray()
     res.send(books)
 })
 
-app.get("/api/books/:title" , async (req, res) => {
-    let requestedBook = await db.collection("books").find({title: {$regex: req.params.title, $options: "i"}}).toArray()
+app.get("/api/books/:title", async (req, res) => {
+    let requestedBook = await db.collection("books").find({ title: { $regex: req.params.title, $options: "i" } }).toArray()
     res.send(requestedBook)
 })
 
 
-app.post("/api/new-book/:title" , async (req, res) => {
-    let newBook = await db.collection("books").insertOne({title:req.params.title, status: "No leído"})
+app.post("/api/new-book/:title", async (req, res) => {
+    let newBook = await db.collection("books").insertOne({ title: req.params.title, status: "No leído" })
     let books = await db.collection("books").find().toArray()
     res.send(books)
 })
 
-app.put("/api/edit-book/:title" , async (req, res) => {
-    await db.collection("books").updateOne({title: {$regex: req.params.title, $options: "i"} }, {$set: {status: "Leído"}})
-    let editedBook = await db.collection("books").find({title: {$regex: req.params.title, $options: "i"}}).toArray()
-    res.send(editedBook)
+app.put("/api/edit-book/:title", async (req, res) => {
+    await db.collection("books").updateOne({ title: { $regex: req.params.title, $options: "i" } }, { $set: { status: "Leído" } })
+    let editedBook = await db.collection("books").find({ title: { $regex: req.params.title, $options: "i" } }).toArray()
+    let books = await db.collection("books").find().toArray()
+    res.send(books)
 })
 
-app.delete("/api/delete-book/:title" , async (req, res) => {
-    await db.collection("books").deleteOne({title: {$regex: req.params.title, $options: "i"}})
+app.delete("/api/delete-book/:title", async (req, res) => {
+    await db.collection("books").deleteOne({ title: { $regex: req.params.title, $options: "i" } })
     let books = await db.collection("books").find().toArray()
     res.send(books)
 })
