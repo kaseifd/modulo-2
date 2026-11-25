@@ -30,15 +30,13 @@ app.use(express.json())
 //         status: "No leído"
 //     },
 //     {
-//         title: "Flora, el mundo secret de las plantas",
+//         title: "Flora, el mundo secreto de las plantas",
 //         status: "Leído"
 //     },
 // ]
 
 const client = await MongoClient.connect("mongodb://admin:admin123@127.0.0.1:27017");
 let db = client.db("books")
-
-
 
 
 app.get("/api/books", async (req, res) => {
@@ -51,7 +49,6 @@ app.get("/api/books/:title", async (req, res) => {
     res.send(requestedBook)
 })
 
-
 app.post("/api/new-book/:title", async (req, res) => {
     let newBook = await db.collection("books").insertOne({ title: req.params.title, status: "No leído" })
     let books = await db.collection("books").find().toArray()
@@ -59,10 +56,16 @@ app.post("/api/new-book/:title", async (req, res) => {
 })
 
 app.put("/api/edit-book/:title", async (req, res) => {
-    await db.collection("books").updateOne({ title: { $regex: req.params.title, $options: "i" } }, { $set: { status: "Leído" } })
-    let editedBook = await db.collection("books").find({ title: { $regex: req.params.title, $options: "i" } }).toArray()
-    let books = await db.collection("books").find().toArray()
-    res.send(books)
+    let book = await db.collection("books").findOne({title: {$regex: req.params.title, $options: "i"}})
+
+    if (book) {
+        let newStatus = book.status === "No leído" ? "Leído" : "No leído"
+        await db.collection("books").updateOne({ title: { $regex: req.params.title, $options: "i" } }, { $set: { status: newStatus } })        
+    }
+
+    let editedBook = await db.collection("books").findOne({title: {$regex: req.params.title, $options: "i"}})
+
+    res.send(editedBook)
 })
 
 app.delete("/api/delete-book/:title", async (req, res) => {

@@ -14,7 +14,7 @@ function displayBooks(url, method) {
             document.getElementById("books-container").innerHTML += `
             <div class="book" id="book-${index}">
                 <h2 id="book-${index}-title">${book.title}</h2>
-                <p>${book.status}</p>
+                <p id="book-${index}-status">${book.status}</p>
                 <button class="delete-book-btn" onclick="deleteBook(${index})">Borrar libro</button>
                 <button class="edit-book-btn" onclick="editBookStatus(${index}, this)">Marcar como leído</button>
             </div>
@@ -30,12 +30,16 @@ function deleteBook(index) {
 
 function editBookStatus(index, button) {
     let bookTitle = document.getElementById(`book-${index}-title`).innerText
-    console.log(button.textContent); // esto no me sirve porque el boton pulsado no es el mismo que el que aparece luego en el dom // buscar otra solucion mañana
+    fetch(baseURL + `/api/edit-book/${bookTitle}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(res => res.json()).then(editedBook => {
+        console.log(editedBook);
+        
+        document.getElementById(`book-${index}-status`).innerText = editedBook.status
 
-
-    // Se puede actualizar solo el elemento pulsado? o se tienen que cargar todos los libros otra vez?
-    displayBooks(`/api/edit-book/${bookTitle}`, "PUT")
-    button.textContent = "Marcar como no leído"
-    console.log(button.textContent);
-    
+        editedBook.status == "Leído" ? button.textContent = "Marcar como no leído" : button.textContent = "Marcar como leído"
+    })
 }
