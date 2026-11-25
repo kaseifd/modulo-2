@@ -11,7 +11,7 @@ export async function connectDb() {
 
 }
 
-export let tables = [
+export let products = [
     {
         type: "table",
         size: {
