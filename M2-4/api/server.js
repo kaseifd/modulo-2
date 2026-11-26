@@ -11,7 +11,7 @@ app.get("/people", (request, response) => {
 })
 
 app.post("/people", (request, response) => {
-    people.push(request.query)
+    people.push(request.body)
     response.send(people)
 })
 

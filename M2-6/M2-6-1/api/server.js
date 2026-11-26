@@ -33,10 +33,7 @@ app.get("/api/tables", async (req, res) => {
     res.send(tables)
 })
 
-
 app.post("/api/add", async (req, res) => {
-    console.log();
-
     await db.collection("products").insertOne(req.body)
     let products = await db.collection("products").find().toArray()
     res.send(products)
@@ -53,6 +50,5 @@ app.delete("/api/delete/:legs", async (req, res) => {
     let products = await db.collection("products").find().toArray()
     res.send(products)
 })
-
 
 app.listen(3000)
