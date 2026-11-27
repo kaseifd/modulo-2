@@ -1,0 +1,8 @@
+.serie {
+    display: flex;
+    justify-content: space-between;
+}
+
+.serie h2{
+    width: 300px;
+}

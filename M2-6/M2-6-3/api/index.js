@@ -5,13 +5,13 @@ import { MongoClient } from "mongodb"
 const app = express()
 
 app.use(cors())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.listen(3000)
 
 let db = await connectDb()
 
-async function connectDb(){
+async function connectDb() {
      const client = await MongoClient.connect("mongodb://admin:admin123@127.0.0.1:27017")
      return client.db("tv")
 }
@@ -124,4 +124,10 @@ async function connectDb(){
 app.get("/series", async (req, res) => {
      let series = await db.collection("series").find().toArray()
      res.send(series)
+})
+
+app.get("/series/:title", async (req, res) => {
+     let searchedTitle = req.params.title
+     let selectedSeries = await db.collection("series").find({ title: { $regex: searchedTitle, $options: "i" } }).toArray()
+     res.send(selectedSeries)
 })
