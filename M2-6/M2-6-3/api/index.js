@@ -131,3 +131,20 @@ app.get("/series/:title", async (req, res) => {
      let selectedSeries = await db.collection("series").find({ title: { $regex: searchedTitle, $options: "i" } }).toArray()
      res.send(selectedSeries)
 })
+
+app.post("/addSerie", async (req, res) => {
+     let newSerie = req.body
+     
+     let serieInDb = await db.collection("series").findOne({ title: newSerie.title })     
+
+     let response = {
+          "acknowledged": false,
+     }
+
+     if (serieInDb == null) {
+          response = await db.collection("series").insertOne(newSerie)
+     }
+
+     res.send(response)
+
+})
