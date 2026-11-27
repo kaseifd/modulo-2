@@ -1,10 +1,15 @@
 const baseURL = "http://localhost:3000"
 
+let menusList = await getData(baseURL + "/restaurant/menus")
+
 async function getData(url) {
     const result = await fetch(url)
     return await result.json()
 }
-let menusList = await getData(baseURL + "/restaurant/menus")
+
+function addEventsToButtons(buttonId, eventType, callback) {
+    document.getElementById(buttonId).addEventListener(eventType, callback)
+}
 
 async function displayMenus(menusList) {
     document.getElementById("menus-container").innerHTML = ""
@@ -24,4 +29,22 @@ async function displayMenus(menusList) {
     });
 }
 
+
+async function addMenu() {
+    console.log("añadir");
+    
+}
+
+async function editMenu() {
+    console.log("editar");
+    
+}
+
+async function deleteMenu() {
+    console.log("borrar");  
+}
+
 displayMenus(menusList)
+addEventsToButtons("add-menu-btn", "click", addMenu)
+addEventsToButtons("edit-menu-btn", "click", editMenu)
+// addEventsToButtons("delete-menu-btn", "click", deleteMenu)
